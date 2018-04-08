@@ -32,7 +32,6 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
       <div class="starter-template">
       <h1>Editing Entry</h1>
 
-
             <?php
               if($db->numRows() == 0) {
                 echo 'No entries';
@@ -65,11 +64,11 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
                       <div class="form-group row">
                         <label for="EntryType" class="col-sm-3 col-form-label text-right">Entry Type</label>
                         <div class="col-sm-9">
-                          <select class="form-control">
-                            <option>Expense</option>
-                            <option>Income</option>
+                          <select class="form-control" name="EntryType" id="EntryType">
+                            <option value="Expense" <?php if($x["EntryType"] == "Expense") echo 'selected="selected"'; ?> >Expense</option>
+                            <option value="Income" <?php if($x["EntryType"] == "Income") echo 'selected="selected"'; ?> >Income</option>
                           </select>
-                          <!-- <input type="text" readonly class="form-control-plaintext" id="entryID" value="<?php echo $x["EntryID"]; ?>"> -->
+
                         </div>
                       </div>
                       <div class="form-group row">
@@ -89,7 +88,6 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
                 </div>
 
             <?php } ?>
-
 
       </div>
     </main><!-- /.container -->
