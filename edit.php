@@ -16,7 +16,7 @@ include('header.php');
 
 $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 
-$errors = array();
+$error = false;
 $success = false;
 
   // When its POST (Saving)
@@ -39,15 +39,20 @@ $success = false;
 
     if($db->updateEntry($query)){
       $success = true;
+      // // Redirect to self ...
+      header("Location: edit.php?id=" .$entryID . "&success=true" );
+      die();
 
     } else {
-      $errors[] = "There is a problem!";
+      $error = true;
+      // // Redirect to self ...
+      header("Location: edit.php?id=" .$entryID . "&error=true" );
+      die();
+
     }
 
 
-    // // Redirect to self ...
-    header("Location: edit.php?id=" .$entryID . "&success=true" );
-    die();
+
 
 
   }
@@ -65,9 +70,14 @@ $success = false;
     <main role="main" class="container">
       <div class="starter-template">
       <h1>Editing Entry</h1>
-            <?php if($_GET["success"]) {
+            <?php if(isset($_GET["success"])) {
               ?>
-              <div class="alert-success alert">Entry updated successfuly!</div>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Entry updated successfuly!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
 
               <?php
