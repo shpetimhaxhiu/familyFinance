@@ -46,19 +46,19 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
                       <div class="form-group row">
                         <label for="id" class="col-sm-3 col-form-label text-right">EntryID</label>
                         <div class="col-sm-9">
-                          <input type="text" readonly class="form-control-plaintext" id="id" name="id" value="<?php echo $x["EntryID"]; ?>">
+                          <input type="text" readonly class="form-control-plaintext" id="id" name="id" value="<?php echo htmlentities($x["EntryID"]); ?>">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="EntryDate" class="col-sm-3 col-form-label text-right">Entry Date</label>
                         <div class="col-sm-9">
-                          <input type="date" class="form-control" id="EntryDate" name="EntryDate" value="<?php echo $x["EntryDate"]; ?>">
+                          <input type="date" class="form-control" id="EntryDate" name="EntryDate" value="<?php echo htmlentities($x["EntryDate"]); ?>">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="Value" class="col-sm-3 col-form-label text-right">Amount</label>
                         <div class="col-sm-9">
-                          <input type="number" id="Value" class="form-control"  name="Value" value="<?php echo $x["Value"]; ?>">
+                          <input type="number" id="Value" class="form-control"  name="Value" value="<?php echo htmlentities($x["Value"]); ?>">
                         </div>
                       </div>
                       <div class="form-group row">
