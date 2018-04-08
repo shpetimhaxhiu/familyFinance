@@ -108,7 +108,7 @@ $success = false;
                       <div class="form-group row">
                         <label for="Value" class="col-sm-3 col-form-label text-right">Amount</label>
                         <div class="col-sm-9">
-                          <input type="number" id="Value" class="form-control"  name="Value" value="<?php echo htmlentities($x["Value"]); ?>">
+                          <input type="number" id="Value" class="form-control"  name="Value" value="<?php echo htmlentities($x["Value"]); ?>" step="0.01">
                         </div>
                       </div>
                       <div class="form-group row">
