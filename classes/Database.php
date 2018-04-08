@@ -34,6 +34,13 @@
       return $rows;
     }
 
+    public function addEntry($sql)
+    {
+      if(!mysql_query($sql)) {
+        mysqli_error($this->_link);
+      };
+    }
+
 
   }
 ?>

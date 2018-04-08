@@ -13,5 +13,7 @@ if($db->numRows() == 0) {
   echo $db->numRows(), " entries";
 }
 
+$db->addEntry("INSERT into Ledger (EntryDate, EntryType) VALUES ('2018-03-03', 'Test 3')");
+
 $db->disconnect();
 ?>
