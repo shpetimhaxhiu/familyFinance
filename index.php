@@ -7,20 +7,21 @@ $db->query("select * from ledger");
 ?>
 
 <main role="main" class="container">
-
   <div class="starter-template">
-  <?php  if($db->numRows() == 0) {
+
+  <?php
+    if($db->numRows() == 0) {
       echo 'No entries';
-    } else {
-      foreach($db->entries() as $article) { ?>
-
-        <p class="lead"><?php echo $article["EntryDate"], "<br>" ?> </p>
-
-    <?php    }
+    }
+    else {
+      foreach($db->entries() as $article) {
+        echo '<p class="lead">', $article["EntryDate"], "<br></p>";
+      }
       echo $db->numRows(), " entries";
-    } ?>
-  </div>
+    }
+  ?>
 
+  </div>
 </main><!-- /.container -->
 
 
