@@ -16,6 +16,8 @@ include('header.php');
 
 $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 
+$errors = array();
+$success = false;
 
   // When its POST (Saving)
   if($_POST && !empty($_POST)) {
@@ -34,11 +36,17 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 
     echo $query;
 
-    $db->updateEntry($query);
+
+    if($db->updateEntry($query)){
+      $success = true;
+
+    } else {
+      $errors[] = "There is a problem!";
+    }
 
 
-    // Redirect to self ...
-    header("Location: edit.php?id=" .$entryID );
+    // // Redirect to self ...
+    header("Location: edit.php?id=" .$entryID . "&success=true" );
     die();
 
 
@@ -57,7 +65,13 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
     <main role="main" class="container">
       <div class="starter-template">
       <h1>Editing Entry</h1>
+            <?php if($_GET["success"]) {
+              ?>
+              <div class="alert-success alert">Entry updated successfuly!</div>
 
+
+              <?php
+            } ?>
             <?php
               if($db->numRows() == 0) {
                 echo 'No entries';

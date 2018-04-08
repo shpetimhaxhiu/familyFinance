@@ -56,7 +56,8 @@
     public function updateEntry($sql)
     {
       if(mysql_query($sql, $this->_link)) {
-        print_r(mysql_query($sql, $this->_link));
+        // print_r(mysql_query($sql, $this->_link));
+        return mysql_query($sql, $this->_link);
       } else {
         echo '<p class="alert alert-danger">', mysql_error($this->_link), '</p>';
       }
