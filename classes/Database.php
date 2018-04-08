@@ -20,11 +20,13 @@
       $this->_numRows = mysql_num_rows($this->_result);
     }
 
+    // get number of rows
     public function numRows()
     {
       return $this->_numRows;
     }
 
+    // get array of entries from database
     public function entries()
     {
       $rows = array();
@@ -34,12 +36,14 @@
       return $rows;
     }
 
+    // get single entry
     public function getEntry()
     {
       $result = mysql_fetch_assoc($this->_result);
       return $result;
     }
 
+    // add entry to database
     public function addEntry($sql)
     {
       if(!mysql_query($sql)) {
