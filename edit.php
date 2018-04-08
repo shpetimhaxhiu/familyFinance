@@ -9,6 +9,11 @@
 $page = "Editing entry";
 include('header.php');
 
+
+
+
+
+
 $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 
 
@@ -20,21 +25,21 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
     $value = $_POST["Value"];
     $registeredBy = $_POST["RegisteredBy"];
 
-    $qry = "update ledger set "
-    . 'EntryType="' . $entryType
-    . '", EntryDate="' . $entryDate
-    . '", Value="' . $value
-    . " Where EntryID=" . $entryID;
+    $query = sprintf("update ledger set EntryType='%s', EntryDate='%s', Value=%f, RegisteredBy='%s' where EntryID=%b",
+      mysql_real_escape_string($entryType),
+      mysql_real_escape_string($entryDate),
+      mysql_real_escape_string($value),
+      mysql_real_escape_string($registeredBy),
+      mysql_real_escape_string($entryID));
 
-    echo $qry;
+    echo $query;
+
+    $db->updateEntry($query);
 
 
-    $db->updateEntry($qry);
-
-    // header("Location: edit.php?id=" .$entryID );
-    // die();
-
-    // echo 'Its $_POST and is not empty';
+    // Redirect to self ...
+    header("Location: edit.php?id=" .$entryID );
+    die();
 
 
   }
