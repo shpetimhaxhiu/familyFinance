@@ -25,7 +25,7 @@
       return $this->_numRows;
     }
 
-    public function rows()
+    public function entries()
     {
       $rows = array();
       for($x = 0; $x < $this->numRows(); $x++) {
