@@ -9,7 +9,7 @@ require 'include/globals.php'; ?>
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 
-    <title><?php echo $app;?></title>
+    <title><?php echo $app, ' - ', $page;?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

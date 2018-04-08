@@ -1,6 +1,9 @@
 <?php
 require_once('classes/Database.php');
+$page = "Transactions List";
+
 include('header.php');
+
 
 $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 $db->query("select * from ledger");
@@ -20,6 +23,8 @@ $db->query("select * from ledger");
           <th scope="col">Entry Type</th>
           <th scope="col">Amount</th>
           <th scope="col">Registered By</th>
+          <th scope="col">Actions</th>
+
 
         </tr>
       </thead>
@@ -37,10 +42,10 @@ $db->query("select * from ledger");
               echo   '<td>', (double)$article["Value"], '</td>';
               echo   '<td><h5>', $article["EntryType"] == "Expense" ? '<span class="badge badge-danger">' : '<span class="badge badge-success">' ,  $article["EntryType"],  '</span></h5></td>';
               echo   '<td>', $article["RegisteredBy"], '</td>';
-
+              echo   '<td><a href class="btn btn-primary btn-sm">Edit</button></td>';
               echo '</tr>';
             }
-              echo '<tr><td colspan="4" class="text-right">', $db->numRows(), " entries </td></tr>";
+              echo '<tr><td colspan="5" class="text-right">', $db->numRows(), " entries </td></tr>";
           }
         ?>
 
