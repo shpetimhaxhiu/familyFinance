@@ -8,19 +8,44 @@ $db->query("select * from ledger");
 
 <main role="main" class="container">
   <div class="starter-template">
+  <h1>Welcome to Family Finances</h1>
+  <p class="lead">
+    Here is a list of transactions from the ledger.
+  </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Entry Date</th>
+          <th scope="col">Entry Type</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Registered By</th>
 
-  <?php
-    if($db->numRows() == 0) {
-      echo 'No entries';
-    }
-    else {
-      foreach($db->entries() as $article) {
-        echo '<p class="lead">', $article["EntryDate"], "<br></p>";
-      }
-      echo $db->numRows(), " entries";
-    }
-  ?>
+        </tr>
+      </thead>
+      <tbody>
 
+        <?php
+          if($db->numRows() == 0) {
+            echo 'No entries';
+          }
+          else {
+            foreach($db->entries() as $article) {
+              echo '<tr>';
+              echo   '<td>', $article["EntryID"], '</td>';
+              echo   '<td>', $article["EntryDate"], '</td>';
+              echo   '<td>', (double)$article["Value"], '</td>';
+              echo   '<td><h5>', $article["EntryType"] == "Expense" ? '<span class="badge badge-danger">' : '<span class="badge badge-success">' ,  $article["EntryType"],  '</span></h5></td>';
+              echo   '<td>', $article["RegisteredBy"], '</td>';
+
+              echo '</tr>';
+            }
+              echo '<tr><td colspan="4" class="text-right">', $db->numRows(), " entries </td></tr>";
+          }
+        ?>
+
+      </tbody>
+    </table>
   </div>
 </main><!-- /.container -->
 
