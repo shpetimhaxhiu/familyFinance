@@ -5,16 +5,117 @@
   //  Author: Shpetim Haxhiu
   //  Application: FamilyFinance
   //
+  require_once 'classes/Database.php';
+$page = "Editing entry";
 include('header.php');
 
-  if($_POST) {
+$db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
+
+
+  // When its POST (Saving)
+  if($_POST && !empty($_POST)) {
     echo var_dump($_POST);
-  } elseif ($_GET) {
-    echo var_dump($_GET);
-  } else {
-    echo 'You don`t have access.';
+    echo 'Its $_POST and is not empty';
   }
 
+  // When its GET (Editing) and ID is not empty
+
+  elseif ($_GET && !empty($_GET["id"])) {
+    echo "<pre>", var_dump($_GET), "</pre><br>";
+    $qry = "select * from ledger WHERE EntryID=" . (string)$_GET["id"];
+    // echo print_r($qry);
+    $db->query($qry);
+
+    echo '<br>Its $_GET';
+
+// GET case
+?>
+
+
+
+
+<?php
+
+
+
+
+
+
+
+
+  }
+  else {
+    echo 'Neither $_POST nor $_GET.';
+  }
+?>
+<main role="main" class="container">
+  <div class="starter-template">
+  <h1>Editing Entry</h1>
+
+
+        <?php
+          if($db->numRows() == 0) {
+            echo 'No entries';
+          }
+          else {
+            $x = $db->getEntry();
+            ?>
+
+            <div class="row justify-content-md-center">
+              <div class="col-lg-8">
+                <form method="POST">
+                  <div class="form-group row">
+                    <label for="id" class="col-sm-3 col-form-label text-right">EntryID</label>
+                    <div class="col-sm-9">
+                      <input type="text" readonly class="form-control-plaintext" id="id" name="id" value="<?php echo $x["EntryID"]; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="EntryDate" class="col-sm-3 col-form-label text-right">Entry Date</label>
+                    <div class="col-sm-9">
+                      <input type="date" class="form-control" id="EntryDate" name="EntryDate" value="<?php echo $x["EntryDate"]; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="Value" class="col-sm-3 col-form-label text-right">Amount</label>
+                    <div class="col-sm-9">
+                      <input type="number" id="Value" class="form-control"  name="Value" value="<?php echo $x["Value"]; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="EntryType" class="col-sm-3 col-form-label text-right">Entry Type</label>
+                    <div class="col-sm-9">
+                      <select class="form-control">
+                        <option>Expense</option>
+                        <option>Income</option>
+                      </select>
+                      <!-- <input type="text" readonly class="form-control-plaintext" id="entryID" value="<?php echo $x["EntryID"]; ?>"> -->
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="RegisteredBy" class="col-sm-3 col-form-label text-right">Registered By</label>
+                    <div class="col-sm-9">
+                      <input type="text" id="RegisteredBy" class="form-control"  name="RegisteredBy" value="<?php echo $x["RegisteredBy"]; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-12 text-right">
+                      <button type="reset" name="button" class="btn btn-secondary">Reset</button>
+                      <button type="submit" name="button" class="btn btn-primary">Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+        <?php } ?>
+
+
+  </div>
+</main><!-- /.container -->
+
+
+<?php
 
 include('footer.php');
 ?>

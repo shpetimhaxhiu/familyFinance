@@ -34,6 +34,12 @@
       return $rows;
     }
 
+    public function getEntry()
+    {
+      $result = mysql_fetch_assoc($this->_result);
+      return $result;
+    }
+
     public function addEntry($sql)
     {
       if(!mysql_query($sql)) {
