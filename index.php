@@ -20,8 +20,8 @@ $db->query("select * from ledger");
         <tr>
           <th scope="col">#</th>
           <th scope="col">Entry Date</th>
-          <th scope="col">Entry Type</th>
           <th scope="col">Amount</th>
+          <th scope="col">Entry Type</th>
           <th scope="col">Registered By</th>
           <th scope="col">Actions</th>
 
