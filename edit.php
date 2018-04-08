@@ -14,8 +14,29 @@ $db = new Database('localhost', 'root', 'njeriop123!@#', 'familyfinance');
 
   // When its POST (Saving)
   if($_POST && !empty($_POST)) {
-    echo var_dump($_POST);
-    echo 'Its $_POST and is not empty';
+    $entryID = $_POST["id"];
+    $entryType = $_POST["EntryType"];
+    $entryDate = $_POST["EntryDate"];
+    $value = $_POST["Value"];
+    $registeredBy = $_POST["RegisteredBy"];
+
+    $qry = "update ledger set "
+    . 'EntryType="' . $entryType
+    . '", EntryDate="' . $entryDate
+    . '", Value="' . $value
+    . " Where EntryID=" . $entryID;
+
+    echo $qry;
+
+
+    $db->updateEntry($qry);
+
+    // header("Location: edit.php?id=" .$entryID );
+    // die();
+
+    // echo 'Its $_POST and is not empty';
+
+
   }
 
   // When its GET (Editing) and ID is not empty
