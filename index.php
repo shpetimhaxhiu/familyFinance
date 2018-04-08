@@ -15,7 +15,7 @@ $db->query("select * from ledger");
   <p class="lead">
     Here is a list of transactions from the ledger.
   </p>
-    <table class="table">
+    <table id="entriesTable" class="table" width="100%">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -45,7 +45,7 @@ $db->query("select * from ledger");
               echo   '<td><a href="#" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a> <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> </a></td>';
               echo '</tr>';
             }
-              echo '<tr><td colspan="5" class="text-right">', $db->numRows(), " entries </td></tr>";
+              // echo '<tr><td colspan="6" class="text-right">', $db->numRows(), " entries </td></tr>";
           }
         ?>
 
